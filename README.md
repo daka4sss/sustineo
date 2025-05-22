@@ -42,10 +42,29 @@ web/    - Reactフロントエンド
 - Node.js 22 以上
 
 ## Setup
-環境変数でAzure関連の設定が必要です。`.env`に以下を記入します。
-```
+環境変数でAzureやデータストアの設定が必要です。プロジェクトルートに`.env`ファイルを作成し、以下のキーを設定してください。
+
+| Key | 説明 | 参照ファイル |
+| --- | --- | --- |
+| `AZURE_VOICE_ENDPOINT` | Azure Speech サービスのエンドポイント | `api/main.py` |
+| `AZURE_VOICE_KEY` | Azure Speech サービスのキー | `api/main.py` |
+| `AZURE_IMAGE_ENDPOINT` | DALL·E 画像生成エンドポイント | `api/agent/agents.py` |
+| `AZURE_IMAGE_API_KEY` | DALL·E API キー | `api/agent/agents.py` |
+| `SUSTINEO_STORAGE` | 画像保存用 Azure Blob Storage | `api/main.py`, `api/agent/agents.py` |
+| `COSMOSDB_CONNECTION` | Cosmos DB 接続文字列 | `api/main.py`, `api/voice/common.py` |
+| `FOUNDRY_CONNECTION` | Azure AI Project (Foundry) の接続情報 | `api/agent/common.py` |
+| `LOCAL_TRACING_ENABLED` | ローカルでのトレーシングを有効化するか | `api/main.py` |
+
+`.env` は以下のようになります。
+```env
 AZURE_VOICE_ENDPOINT=<endpoint>
 AZURE_VOICE_KEY=<key>
+AZURE_IMAGE_ENDPOINT=<endpoint>
+AZURE_IMAGE_API_KEY=<key>
+SUSTINEO_STORAGE=<storage_url>
+COSMOSDB_CONNECTION=<connection_string>
+FOUNDRY_CONNECTION=<connection_string>
+LOCAL_TRACING_ENABLED=false
 ```
 
 ## Run / Build Commands
